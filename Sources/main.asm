@@ -140,7 +140,7 @@ MAIN
               LDAA  CRNT_STATE         
               JSR   DISPATCHER         
               BRA   MAIN               
-              
+
 ; data section
 ;***************************************************************************************************
 msg1          dc.b  "Battery volt ",0
@@ -196,7 +196,6 @@ VERIFY_RIGHT_TRN  CMPA  #RIGHT_TRN                          ; Verify if the robo
 VERIFY_RIGHT_ALIGN CMPA  #RIGHT_ALIGN                       ; Verify if the robot's state is RIGHT_ALIGN
                   JSR   RIGHT_ALIGN_DONE                   ; Validate RIGHT_ALIGN state
                   RTS                                      ; INVALID state
-                               
 
 
 ;Movement
@@ -206,7 +205,6 @@ START_ST          BRCLR   PORTAD0, %00000100,RELEASE
                   MOVB    #FWD, CRNT_STATE
 
 RELEASE           RTS                                                                                                                                  
-
 
 ;***************************************************************************************************
 
@@ -243,7 +241,7 @@ NO_FWD_REAR_BUMP  LDAA    SENSOR_BOW
                   SUBA    LINE_VARIANCE                                                                
                   CMPA    BASE_LINE                                                              
                   BMI     CHECK_LEFT_ALIGN
-                  
+
 ;***************************************************************************************************                                                                  
 
 NOT_ALIGNED       LDAA    SENSOR_PORT                                                            
@@ -263,7 +261,6 @@ NO_BOW            LDAA    SENSOR_STBD
                   CMPA    BASE_STBD                                                               
                   BPL     PARTIAL_RIGHT_TRN                                                         
                   BMI     EXIT 
-                                                                                      
 
 ;***************************************************************************************************
 
@@ -278,7 +275,7 @@ PARTIAL_LEFT_TRN  LDY     #6000
 CHECK_LEFT_ALIGN  JSR     INIT_LEFT                                                               
                   MOVB    #LEFT_ALIGN, CRNT_STATE                                                 
                   BRA     EXIT
-                  
+
 ;*************************************************************************************************** 
 
 PARTIAL_RIGHT_TRN LDY     #6000                                                                  
@@ -294,7 +291,6 @@ CHECK_RIGHT_ALIGN JSR     INIT_RIGHT
                   BRA     EXIT                                                                                                                                                         
 
 EXIT              RTS 
-
 
 ;***************************************************************************************************                                                                            
 
@@ -331,6 +327,7 @@ REV_TRN_ST        LDAA    SENSOR_BOW
 
 ALL_STOP_ST       BRSET   PORTAD0, %00000100, NO_START_BUMP                                       
                   MOVB    #START, CRNT_STATE                                                      
+
 NO_START_BUMP     RTS                                                                             
 
 ; Initialization Subroutines
@@ -459,7 +456,7 @@ RS_MAIN_LOOP      LDAA  SENSOR_NUM     ; Select the correct sensor input
                   BRA   RS_MAIN_LOOP   ; and do it again
 
 RS_EXIT           RTS
-              
+
 
 ; -------------------------------------------------------------------------------------------------      
 ;                               Select Sensor
@@ -538,7 +535,7 @@ UPDT_DISPL        MOVB    #$90,ATDCTL5    ; R-just., uns., sing. conv., mult., c
                   LDAA    #'.'            ; add the decimal place
                   JSR     putcLCD         ; put the dot into LCD
                   LDAA    HUNDREDS        ;output the HUNDREDS ASCII character
-                  JSR     putcLCD         ;same for THOUSANDS, ’.’ and HUNDREDS
+                  JSR     putcLCD         ;same for THOUSANDS, ï¿½.ï¿½ and HUNDREDS
                   LDAA    #$C7            ; Move LCD cursor to the 2nd row, end of msg2
                   JSR     cmd2LCD         ;
                   LDAB    CRNT_STATE      ; Display current state
@@ -634,7 +631,7 @@ initAD            MOVB  #$C0,ATDCTL2      ;power up AD, select fast flag clear
                   MOVB  #$85,ATDCTL4      ;res=8, conv-clks=2, prescal=12
                   BSET  ATDDIEN,$0C       ;configure pins AN03,AN02 as digital inputs
                   RTS
-                  
+
 ;***************************************************************************************************
 int2BCD           XGDX                    ;Save the binary number into .X
                   LDAA #0                 ;Clear the BCD_BUFFER
@@ -681,7 +678,7 @@ CON_EXIT          RTS                     ; Were done the conversion
 LCD_POS_CRSR      ORAA #%10000000         ; Set the high bit of the control word
                   JSR cmd2LCD             ; and set the cursor address
                   RTS
-                  
+
 ;***************************************************************************************************
 BIN2ASC               PSHA               ; Save a copy of the input number
                       TAB            
@@ -703,6 +700,7 @@ BIN2ASC               PSHA               ; Save a copy of the input number
                       LDAA 0,X            ; Get the MSnibble character into ACCA
                       PULB                ; Retrieve the LSnibble character into ACCB
                       RTS
+
 ;***************************************************************************************************
 ;* BCD to ASCII Conversion Routine
 ;* This routine converts the BCD number in the BCD_BUFFER
@@ -719,61 +717,60 @@ C_TTHOU           LDAA    TEN_THOUS     ; Check... (6 KB left)
                   ORAA    NO_BLANK
                   BNE     NOT_BLANK1
 
-ISBLANK1          LDAA    #' '          ; It’s blank
+ISBLANK1          LDAA    #' '          ; Itï¿½s blank
                   STAA    TEN_THOUS     ; so store a space
-                  BRA     C_THOU        ; and check the ’thousands’ digit
+                  BRA     C_THOU        ; and check the ï¿½thousandsï¿½ digit
 
-NOT_BLANK1        LDAA    TEN_THOUS     ; Get the ’ten_thousands’ digit
+NOT_BLANK1        LDAA    TEN_THOUS     ; Get the ï¿½ten_thousandsï¿½ digit
                   ORAA    #$30          ; Convert to ascii
                   STAA    TEN_THOUS
-                  LDAA    #$1           ; Signal that we have seen a ’non-blank’ digit
+                  LDAA    #$1           ; Signal that we have seen a ï¿½non-blankï¿½ digit
                   STAA    NO_BLANK
 
 C_THOU            LDAA    THOUSANDS     ; Check the thousands digit for blankness
-                  ORAA    NO_BLANK      ; If it’s blank and ’no-blank’ is still zero
+                  ORAA    NO_BLANK      ; If itï¿½s blank and ï¿½no-blankï¿½ is still zero
                   BNE     NOT_BLANK2
 
 ISBLANK2          LDAA    #' '          ; Thousands digit is blank
                   STAA    THOUSANDS     ; so store a space
                   BRA     C_HUNS        ; and check the hundreds digit
 
-NOT_BLANK2        LDAA    THOUSANDS     ; (similar to ’ten_thousands’ case)
+NOT_BLANK2        LDAA    THOUSANDS     ; (similar to ï¿½ten_thousandsï¿½ case)
                   ORAA    #$30
                   STAA    THOUSANDS
                   LDAA    #$1
                   STAA    NO_BLANK
 
 C_HUNS            LDAA    HUNDREDS      ; Check the hundreds digit for blankness
-                  ORAA    NO_BLANK      ; If it’s blank and ’no-blank’ is still zero
+                  ORAA    NO_BLANK      ; If itï¿½s blank and ï¿½no-blankï¿½ is still zero
                   BNE     NOT_BLANK3
 
 ISBLANK3          LDAA    #' '          ; Hundreds digit is blank
                   STAA    HUNDREDS       ; so store a space
                   BRA     C_TENS          ; and check the tens digit
 
-NOT_BLANK3        LDAA    HUNDREDS          ; (similar to ’ten_thousands’ case)
+NOT_BLANK3        LDAA    HUNDREDS          ; (similar to ï¿½ten_thousandsï¿½ case)
                   ORAA    #$30
                   STAA    HUNDREDS
                   LDAA    #$1
                   STAA    NO_BLANK
 
 C_TENS            LDAA    TENS          ; Check the tens digit for blankness
-                  ORAA    NO_BLANK      ; If it’s blank and ’no-blank’ is still zero
+                  ORAA    NO_BLANK      ; If itï¿½s blank and ï¿½no-blankï¿½ is still zero
                   BNE     NOT_BLANK4
 
 ISBLANK4          LDAA    #' '          ; Tens digit is blank
                   STAA    TENS          ; so store a space
                   BRA     C_UNITS       ; and check the units digit
 
-NOT_BLANK4        LDAA    TENS          ; (similar to ’ten_thousands’ case)
+NOT_BLANK4        LDAA    TENS          ; (similar to ï¿½ten_thousandsï¿½ case)
                   ORAA    #$30
                   STAA    TENS
 
 C_UNITS           LDAA    UNITS         ; No blank check necessary, convert to ascii.
                   ORAA    #$30
                   STAA    UNITS
-                  RTS                 ; We’re done
-
+                  RTS                 ; Weï¿½re done
 
 ;***************************************************************************************************
 
