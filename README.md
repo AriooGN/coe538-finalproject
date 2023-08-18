@@ -3,4 +3,4 @@ This code is part of my microprocessor system class project. You may refer to it
 
 Demonstration Video available below:
 
-<div align="center"> <a href="https://youtu.be/PTfCmhq1RRY"> <img src="https://github.com/AriooGN/coe538-finalproject/assets/124407027/17e3f618-50d0-467c-b5c4-8fe8b650b4ec" style="width:100%;"> </a> </div>
+<div align="center"> <a href="https://www.youtube.com/watch?v=PTfCmhq1RRY"> <img src="https://github.com/AriooGN/coe538-finalproject/assets/124407027/17e3f618-50d0-467c-b5c4-8fe8b650b4ec" style="width:100%;"> </a> </div>
