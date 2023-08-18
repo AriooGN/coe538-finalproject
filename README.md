@@ -4,7 +4,7 @@
 
 **Project Title**: EEBOT Maze Runner Project
 
-<h3> Team Members:</h3>
+<h2> Team Members:</h2>
 
 Arshia Rahim     
 Mohammad Al-Shalabi     
@@ -12,11 +12,11 @@ Jahmil Ally
 Arian Fooladray      
 
 
-<h3> Project Description:</h3>
+<h2> Project Description:</h2>
 The EEBOT Maze Runner Project involved implementing assembly language code to enable a robot (EEBOT) to autonomously navigate complex mazes using various algorithms. The primary goals included guiding the robot through the maze, making decisions at intersections, and finding the way out of dead ends. The project required integrating sensors, LCD displays, motors, and developing software routines to manage these components effectively.
 
 
-<h3>Main Code Blocks:</h3>
+<h2>Main Code Blocks:</h2>
 
 **Initialization and Configuration:** Set up foundational elements, define constants, initialize sensors, configure timers, and define variables for data conversions.
 
@@ -29,14 +29,14 @@ The EEBOT Maze Runner Project involved implementing assembly language code to en
 **Data Conversion:** Created subroutines to convert data between different formats (e.g., BCD or ASCII) for tasks such as displaying numbers on the LCD.
 
 
-<h3>Challenges Encountered:</h3>
+<h2>Challenges Encountered:</h2>
 
 **Code Organization:** Managing a large assembly language project required careful structuring into manageable modules and subroutines.
 **Hardware & Software Synchronization:** Ensuring software accurately interfaces with hardware demanded precise timing and iterative development.
 **Debugging:** Debugging assembly language programs can be challenging, necessitating the use of emulators and step-through execution.
 
 
-<h3>Reflection & Future Recommendations:</h3>
+<h2>Reflection & Future Recommendations:</h2>
 
 **Modular Design:** Emphasizing modular design from the beginning simplifies development and debugging.
 **Real-time Feedback:** Using LCD screens for instant updates enhances user experience.
@@ -44,5 +44,5 @@ The EEBOT Maze Runner Project involved implementing assembly language code to en
 **Collaboration:** Utilizing version control tools like Git/GitHub streamlines group collaboration.
 
 
-<h3>Demonstration Video available below:</h3>
+<h2>Demonstration Video available below:</h2>
 <div align="center"> <a href="https://www.youtube.com/watch?v=PTfCmhq1RRY"> <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/124407027/261687156-17e3f618-50d0-467c-b5c4-8fe8b650b4ec.jpg" style="width:100%;"> </a> </div>
