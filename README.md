@@ -6,10 +6,10 @@
 
 <h3> Team Members:</h3>
 
-Arshia Rahim
-Mohammad Al-Shalabi
-Jahmil Ally
-Arian Fooladray
+Arshia Rahim     
+Mohammad Al-Shalabi     
+Jahmil Ally     
+Arian Fooladray      
 
 
 <h3> Project Description:</h3>
