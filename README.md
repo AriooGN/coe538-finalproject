@@ -3,4 +3,6 @@ This code is part of my microprocessor system class project. You may refer to it
 
 Demonstration Video available below:
 
-<p align="center"> [![DEMO](https://img.youtube.com/vi/PTfCmhq1RRY/0.jpg)](https://youtu.be/PTfCmhq1RRY "DEMO") </p>
+<p align="center"> 
+[![DEMO](https://img.youtube.com/vi/PTfCmhq1RRY/0.jpg)](https://youtu.be/PTfCmhq1RRY "DEMO")
+</p>
